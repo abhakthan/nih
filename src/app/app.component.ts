@@ -19,7 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public constructor(private readonly backendService: BackendService) {
     this.subscription = new Subscription();
     this.items = [];
-    this.errors = [];
+    this.errors = ['Loading...'];
   }
 
   /**
@@ -38,6 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.errors.push('Users not found from API call');
       }
     }, (error) => {
+      this.errors = [];
       this.errors.push(error.message);
     });
     this.subscription.add(sub1);
